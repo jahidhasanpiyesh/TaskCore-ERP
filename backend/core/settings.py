@@ -3,27 +3,20 @@ from pathlib import Path
 
 from decouple import config
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# BUILD PATHS INSIDE THE PROJECT LIKE BASE_DIR AND SUBDIR.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
+# SECURITY WARNING SECTION : SECRET KEY USED PRODUCTION IS .ENV FILE..
 SECRET_KEY = config("SECRET_KEY")
 
-
-# SECURITY WARNING: don't run with debug turned on in production!
+# SECURITY WARNIN: DON'T RUN DEBUG TURNED ON IN PRODUCTION..!
 DEBUG = config("DEBUG", default=True, cast=bool)
-
 ALLOWED_HOSTS = []
 
 
-# Application definition
-
+# APPLICATION DEFINATION
 INSTALLED_APPS = [
-    # Django Apps
+    # DJANGO BULIT IN APPS
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -31,11 +24,11 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
-    # Third Party Apps
+    # THIRD PARTY APPS
     "rest_framework",
     "corsheaders",
 
-    # Local Apps
+    # LOCAL APPS
     "accounts",
 ]
 
@@ -55,11 +48,10 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 ROOT_URLCONF = 'core.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,7 +68,6 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -85,9 +76,8 @@ DATABASES = {
 }
 
 
-# Password validation
+# PASSWORD VALIDATION
 # https://docs.djangoproject.com/en/6.1/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -104,21 +94,14 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
+# INTERNATIONALIZATION
 # https://docs.djangoproject.com/en/6.1/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
-
-
 AUTH_USER_MODEL = "accounts.User"
-
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
@@ -133,15 +116,15 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
 }
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/6.1/howto/static-files/
 
+
+# STATIC FILES SECTION
+# https://docs.djangoproject.com/en/6.1/howto/static-files/
 STATIC_URL = 'static/'
 
 
-# Email
+# EMAIL SETUP SECTION
 # https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
-
 MAILERS = {
     'default': {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
